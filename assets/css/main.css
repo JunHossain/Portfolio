@@ -789,7 +789,43 @@ input, select, textarea {
 			text-align: left;
 		}
 		
-		
+/* Friends */
+		.friends-container {
+			display: flex;
+			gap: 15px; /* Space between tabs */
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.friend {
+			width: 220px;
+			height: 220px;
+			background: rgba(255, 255, 255, 0.1);
+			border-radius: 10px;
+			text-align: center;
+			padding: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			transition: transform 0.3s;
+		}
+
+		.friend:hover {
+			transform: scale(1.05);
+		}
+
+		.friend img {
+			width: 160px; 
+			height: 160px;
+			border-radius: 50%;
+			border: 2px solid rgb(195, 187, 187);
+			object-fit: cover;
+		}
+
+		.friend p {
+			color: white;
+			font-size: 24px;
+			font-family: 'Bebas Neue', cursive;
+		}
+
 
 /* List */
 
@@ -1229,7 +1265,7 @@ input, select, textarea {
 			-webkit-transition: -webkit-transform 0.325s ease-in-out, -webkit-filter 0.325s ease-in-out;
 			-ms-transition: -ms-transform 0.325s ease-in-out, -ms-filter 0.325s ease-in-out;
 			transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out;
-			background-image: url("../../images/bg.jpg");
+			background-image: url("/images/bg.jpg");
 			background-position: center 55%;
 			background-size: cover;
 			background-repeat: no-repeat;
