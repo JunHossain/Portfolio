@@ -1,0 +1,67 @@
+---
+// Renders the "about me" tables (personal info, education, skills)
+// from the frontmatter of src/data/intro.md.
+type Skill = { devicon?: string; img?: string; alt?: string };
+
+interface Props {
+	about: { label: string; value: string }[];
+	education: { level: string; year: string; institution: string; result: string }[];
+	skills: { languages: Skill[]; softwares: Skill[] };
+}
+
+const { about, education, skills } = Astro.props;
+const skillCols = Math.max(skills.languages.length, skills.softwares.length) + 1;
+---
+
+<table>
+	{about.map((row) => (
+		<tr>
+			<td><strong>{row.label}</strong></td>
+			<td>{row.value}</td>
+		</tr>
+	))}
+</table>
+
+<table>
+	<tr>
+		<td align="center" colspan={education.length + 1}><strong>Education</strong></td>
+	</tr>
+	<tr>
+		<td></td>
+		{education.map((e) => <td align="center">{e.level}</td>)}
+	</tr>
+	<tr>
+		<td>Passing Year</td>
+		{education.map((e) => <td>{e.year}</td>)}
+	</tr>
+	<tr>
+		<td>Institution</td>
+		{education.map((e) => <td>{e.institution}</td>)}
+	</tr>
+	<tr>
+		<td>Result</td>
+		{education.map((e) => <td>{e.result}</td>)}
+	</tr>
+</table>
+
+<table>
+	<tr>
+		<td align="center" colspan={skillCols}><strong>Skills</strong></td>
+	</tr>
+	<tr>
+		<td width="150px">Languages</td>
+		{skills.languages.map((s) => (
+			<td>
+				{s.devicon ? <i class={s.devicon}></i> : <img src={s.img} width="24" height="24" alt={s.alt ?? ''} />}
+			</td>
+		))}
+	</tr>
+	<tr>
+		<td width="150px">Softwares</td>
+		{skills.softwares.map((s) => (
+			<td>
+				{s.devicon ? <i class={s.devicon}></i> : <img src={s.img} width="24" height="24" alt={s.alt ?? ''} />}
+			</td>
+		))}
+	</tr>
+</table>

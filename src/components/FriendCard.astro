@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { asset } from '../lib/asset';
+
+interface Props {
+	friend: CollectionEntry<'friends'>;
+}
+
+const { friend } = Astro.props;
+const { name, image, url } = friend.data;
+---
+
+<div class="friend">
+	<a href={url} target="_blank" rel="noopener">
+		<img src={asset(image)} alt={name} />
+		<p>{name}</p>
+	</a>
+</div>

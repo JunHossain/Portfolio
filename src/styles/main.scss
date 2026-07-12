@@ -3,8 +3,7 @@
 @import 'libs/mixins';
 @import 'libs/vendor';
 @import 'libs/breakpoints';
-@import 'fontawesome-all.min.css';
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600');
+// Font Awesome (local) and Google Fonts are loaded via <link> tags in Base.astro.
 
 /*
 	Dimension by HTML5 UP
@@ -48,3 +47,7 @@
 	@import 'layout/header';
 	@import 'layout/main';
 	@import 'layout/footer';
+
+// Custom (extracted from hand-edited main.css: Work/Table/Friends layouts).
+
+	@import 'custom';

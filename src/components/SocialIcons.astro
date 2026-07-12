@@ -1,0 +1,13 @@
+---
+import social from '../data/social.json';
+---
+
+<ul class="icons">
+	{social.map((s) => (
+		<li>
+			<a href={s.url} target="_blank" rel="noopener" class={`icon brands ${s.icon}`} style={`color: ${s.color};`}>
+				<span class="label">{s.label}</span>
+			</a>
+		</li>
+	))}
+</ul>

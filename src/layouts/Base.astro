@@ -1,0 +1,49 @@
+---
+import '../styles/main.scss';
+import site from '../data/site.json';
+import { asset } from '../lib/asset';
+
+// The template's #bg and .image overlays reference these (see _bg.scss / _image.scss).
+const cssVars = [
+	`--image-overlay: url('${asset('images/overlay.png')}')`,
+	`--image-bg: url('${asset('images/bg.jpg')}')`,
+].join('; ');
+---
+
+<html lang="en" style={cssVars}>
+	<head>
+		<meta charset="utf-8" />
+		<title>{site.title}</title>
+		<link rel="icon" type="image/x-icon" href={asset(site.favicon)} />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+		<link rel="stylesheet" href={asset('assets/css/fontawesome-all.min.css')} />
+		<noscript><link rel="stylesheet" href={asset('assets/css/noscript.css')} /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+		<div id="wrapper">
+			<slot />
+
+			<!-- Footer -->
+			<footer id="footer">
+				<p class="copyright">&copy; {site.name}. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+			</footer>
+		</div>
+
+		<!-- BG -->
+		<div id="bg"></div>
+
+		<!-- Scripts (template's original panel logic, kept as-is) -->
+		<script is:inline src={asset('assets/js/jquery.min.js')}></script>
+		<script is:inline src={asset('assets/js/browser.min.js')}></script>
+		<script is:inline src={asset('assets/js/breakpoints.min.js')}></script>
+		<script is:inline src={asset('assets/js/util.js')}></script>
+		<script is:inline src={asset('assets/js/main.js')}></script>
+	</body>
+</html>

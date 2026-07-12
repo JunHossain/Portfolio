@@ -1,0 +1,26 @@
+[
+	{
+		"label": "Facebook",
+		"url": "https://facebook.com/jun.hoss",
+		"icon": "fa-facebook-f",
+		"color": "#74C0FC"
+	},
+	{
+		"label": "Discord",
+		"url": "https://discordapp.com/users/1303092389623103600",
+		"icon": "fa-discord",
+		"color": "#74C0FC"
+	},
+	{
+		"label": "WhatsApp",
+		"url": "https://wa.me/8801841622116",
+		"icon": "fa-whatsapp",
+		"color": "#74C0FC"
+	},
+	{
+		"label": "GitHub",
+		"url": "https://github.com/JunHossain",
+		"icon": "fa-github",
+		"color": "#74C0FC"
+	}
+]
