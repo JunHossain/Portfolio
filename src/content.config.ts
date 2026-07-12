@@ -11,8 +11,21 @@ const projects = defineCollection({
 		slug: z.string(), // used for the detail panel's #project-<slug> anchor
 		cardImage: z.string(), // thumbnail shown on the grid card, e.g. "images/pic02.jpg"
 		alt: z.string().default(''),
-		summary: z.string().default(''), // short line shown at the top of the detail panel
-		tags: z.array(z.string()).default([]), // tech & tools, e.g. ["Java", "Design"]
+		headerImage: z.string().optional(), // hero banner at the top of the detail panel; falls back to a placeholder
+		summary: z.string().default(''), // short line shown under the title
+		// Tech & tools shown as logos next to the title. Use a devicon class (icon)
+		// or an image path (img). label is the accessible name / tooltip.
+		tags: z
+			.array(
+				z.object({
+					icon: z.string().optional(),
+					img: z.string().optional(),
+					label: z.string(),
+				}),
+			)
+			.default([]),
+		// How the gallery is displayed: a static grid, or a swipeable slider.
+		galleryStyle: z.enum(['grid', 'slider']).default('grid'),
 		gallery: z
 			.array(
 				z.object({

@@ -1,0 +1,43 @@
+---
+// A swipeable image/video slider used by projects with galleryStyle: slider.
+// Horizontal scroll-snap (native swipe on touch) plus prev/next arrow buttons.
+import { asset } from '../lib/asset';
+
+interface Props {
+	items: { src: string; alt?: string; type?: 'image' | 'video' }[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="slider">
+	<button class="slider-btn prev" type="button" aria-label="Previous">&#8249;</button>
+	<div class="slider-track">
+		{items.map((m) => (
+			<div class="slide">
+				{m.type === 'video' ? (
+					<video src={asset(m.src)} controls playsinline></video>
+				) : (
+					<img src={asset(m.src)} alt={m.alt} loading="lazy" />
+				)}
+			</div>
+		))}
+	</div>
+	<button class="slider-btn next" type="button" aria-label="Next">&#8250;</button>
+</div>
+
+<script>
+	// Arrow buttons scroll the track by one slide width. Touch/trackpad swipe
+	// works natively via scroll-snap. Handles multiple sliders on the page.
+	document.querySelectorAll<HTMLElement>('.slider').forEach((slider) => {
+		const track = slider.querySelector<HTMLElement>('.slider-track');
+		if (!track) return;
+		const step = () => track.clientWidth;
+		slider
+			.querySelector('.prev')
+			?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+		slider
+			.querySelector('.next')
+			?.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+	});
+</script>

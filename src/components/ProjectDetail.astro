@@ -4,24 +4,40 @@
 import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { asset } from '../lib/asset';
+import Slider from './Slider.astro';
 
 interface Props {
 	project: CollectionEntry<'projects'>;
 }
 
 const { project } = Astro.props;
-const { title, slug, summary, tags, gallery } = project.data;
+const { title, slug, headerImage, summary, tags, gallery, galleryStyle } = project.data;
 const { Content } = await render(project);
+
+const hero = headerImage ?? 'images/placeholder.svg';
 ---
 
 <article id={`project-${slug}`} class="project-detail work-layout">
-	<h2 class="major">{title}</h2>
+	<div class="project-hero">
+		<img src={asset(hero)} alt={headerImage ? title : ''} />
+	</div>
 
-	{tags.length > 0 && (
-		<ul class="tags">
-			{tags.map((t) => <li>{t}</li>)}
-		</ul>
-	)}
+	<div class="project-heading">
+		<h2 class="major">{title}</h2>
+		{tags.length > 0 && (
+			<ul class="tool-logos">
+				{tags.map((t) => (
+					<li>
+						{t.icon ? (
+							<i class={t.icon} title={t.label} aria-label={t.label}></i>
+						) : (
+							<img src={asset(t.img!)} alt={t.label} title={t.label} />
+						)}
+					</li>
+				))}
+			</ul>
+		)}
+	</div>
 
 	{summary && <p class="summary">{summary}</p>}
 
@@ -29,17 +45,20 @@ const { Content } = await render(project);
 		<Content />
 	</div>
 
-	{gallery.length > 0 && (
-		<div class="gallery">
-			{gallery.map((m) =>
-				m.type === 'video' ? (
-					<video src={asset(m.src)} controls playsinline></video>
-				) : (
-					<img src={asset(m.src)} alt={m.alt} loading="lazy" />
-				),
-			)}
-		</div>
-	)}
+	{gallery.length > 0 &&
+		(galleryStyle === 'slider' ? (
+			<Slider items={gallery} />
+		) : (
+			<div class="gallery">
+				{gallery.map((m) =>
+					m.type === 'video' ? (
+						<video src={asset(m.src)} controls playsinline></video>
+					) : (
+						<img src={asset(m.src)} alt={m.alt} loading="lazy" />
+					),
+				)}
+			</div>
+		))}
 
 	<ul class="actions">
 		<li><a href="#work" class="button small">&larr; Back to Work</a></li>

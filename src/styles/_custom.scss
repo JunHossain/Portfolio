@@ -56,38 +56,68 @@
 
 /* Project detail panel */
 
-	.project-detail {
-		.tags {
-			list-style: none;
-			padding: 0;
-			margin: 0 0 1.5rem 0;
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.5rem;
-			justify-content: center;
-
-			li {
-				padding: 0.25rem 0.85rem;
-				border: 1px solid rgba(255, 255, 255, 0.3);
-				border-radius: 999px;
-				font-size: 0.7rem;
-				letter-spacing: 0.15rem;
-				text-transform: uppercase;
-			}
+	.project-hero {
+		img {
+			width: 100%;
+			height: 240px;
+			object-fit: cover;
+			border-radius: 10px;
+			display: block;
 		}
 
+		@include breakpoint('<=small') {
+			img {
+				height: 170px;
+			}
+		}
+	}
+
+	.project-heading {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1rem;
+
+		.major {
+			margin-bottom: 0;
+		}
+	}
+
+	.tool-logos {
+		list-style: none;
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0;
+		margin: 0;
+
+		li {
+			padding: 0;
+			border: 0;
+		}
+
+		i {
+			font-size: 1.9rem;
+			line-height: 1;
+		}
+
+		img {
+			width: 1.9rem;
+			height: 1.9rem;
+			display: block;
+		}
+	}
+
+	.project-detail {
 		.summary {
-			text-align: center;
 			font-style: italic;
 			color: rgba(255, 255, 255, 0.75);
-			margin-bottom: 1.5rem;
 		}
 
 		.gallery {
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 			gap: 1rem;
-			margin: 1rem 0 2rem 0;
 
 			img,
 			video {
@@ -95,6 +125,73 @@
 				border-radius: 8px;
 				display: block;
 			}
+		}
+	}
+
+/* Image slider (galleryStyle: slider) */
+
+	.slider {
+		position: relative;
+	}
+
+	.slider-track {
+		display: flex;
+		gap: 1rem;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none; /* Firefox */
+
+		&::-webkit-scrollbar {
+			display: none; /* Chrome/Safari */
+		}
+	}
+
+	.slide {
+		flex: 0 0 100%;
+		scroll-snap-align: center;
+
+		img,
+		video {
+			width: 100%;
+			max-height: 60vh;
+			object-fit: contain;
+			border-radius: 8px;
+			display: block;
+			background: rgba(0, 0, 0, 0.2);
+		}
+	}
+
+	.slider-btn {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 2.5rem;
+		height: 2.5rem;
+		border: 0;
+		border-radius: 50%;
+		background: rgba(0, 0, 0, 0.55);
+		color: #ffffff;
+		font-size: 1.5rem;
+		line-height: 1;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background-color 0.2s ease;
+		z-index: 2;
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.8);
+		}
+
+		&.prev {
+			left: 0.5rem;
+		}
+
+		&.next {
+			right: 0.5rem;
 		}
 	}
 

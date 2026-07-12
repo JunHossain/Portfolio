@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Image placeholder">
+	<rect width="1200" height="500" fill="#23282d"/>
+	<rect x="24" y="24" width="1152" height="452" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="14 10" rx="14"/>
+	<g fill="rgba(255,255,255,0.55)">
+		<path d="M520 300l50-64 40 48 40-30 60 46H520z" opacity="0.6"/>
+		<circle cx="700" cy="210" r="22" opacity="0.6"/>
+	</g>
+	<g fill="rgba(255,255,255,0.4)" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif">
+		<text x="600" y="368" font-size="30" letter-spacing="4">IMAGE PLACEHOLDER</text>
+		<text x="600" y="404" font-size="18">set this in the project's .md file</text>
+	</g>
+</svg>
