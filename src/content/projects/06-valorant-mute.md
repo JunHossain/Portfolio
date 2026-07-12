@@ -5,11 +5,8 @@ cardImage: images/placeholder.svg
 alt: Discord bot that mutes dead Valorant teammates
 # headerImage: images/mute-hero.png
 summary: A Discord bot that mutes teammates in voice chat the moment they die in Valorant.
-# TODO(confirm): set the tag logo to the bot's language once confirmed, e.g.
-#   - { icon: "devicon-python-plain colored", label: "Python" }
-#   - { icon: "devicon-javascript-plain colored", label: "JavaScript" }
 tags:
-  - { icon: "devicon-github-original", label: "GitHub" }
+  - { icon: "devicon-python-plain colored", label: "Python" }
 gallery: []
 order: 6
 ---
