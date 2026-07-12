@@ -1,0 +1,18 @@
+---
+// Intro panel: bio (markdown body) + the about/education/skills tables.
+// Content lives in src/data/intro.md — edit that to change what's shown here.
+import AboutTables from '../AboutTables.astro';
+import * as intro from '../../data/intro.md';
+import { asset } from '../../lib/asset';
+---
+
+<article id="intro">
+	<h2 class="major">Intro</h2>
+	<span class="image main"><img src={asset(intro.frontmatter.image)} alt="" /></span>
+	<intro.Content />
+	<AboutTables
+		about={intro.frontmatter.about}
+		education={intro.frontmatter.education}
+		skills={intro.frontmatter.skills}
+	/>
+</article>

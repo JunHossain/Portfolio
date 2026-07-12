@@ -22,7 +22,7 @@ skills:
     - { img: "https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/brand-icons/product/svg/excel_24x1.svg", alt: "Excel" }
 ---
 
-I'm a 3rd year student pursuing a degree in Computer Science. I have a keen interest in web development and enjoy learning new technologies and frameworks.
+I'm a 4th year student pursuing a degree in Computer Science. I have a keen interest in web development and enjoy learning new technologies and frameworks.
 
 I also have a keen interest in game development and have dabbled in the world of game engines such as Godot.
 

@@ -1,0 +1,15 @@
+---
+// Friends panel: one entry per file in src/content/friends/.
+// Add or remove a friend by adding/deleting a .md file there.
+import { getCollection } from 'astro:content';
+import FriendCard from '../FriendCard.astro';
+
+const friends = (await getCollection('friends')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<article id="friends" class="work-layout">
+	<h2 class="major">Friends</h2>
+	<div class="friends-container">
+		{friends.map((friend) => <FriendCard friend={friend} />)}
+	</div>
+</article>

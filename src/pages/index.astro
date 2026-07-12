@@ -1,16 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
+// Assembly only. Each panel is a self-contained file in src/components/panels/ —
+// edit those to change a section's structure. The four <article> panels compile
+// into ONE page so the Dimension show/hide animation and no-reload nav are preserved.
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
-import WorkItem from '../components/WorkItem.astro';
-import AboutTables from '../components/AboutTables.astro';
-import SocialIcons from '../components/SocialIcons.astro';
-import FriendCard from '../components/FriendCard.astro';
-import * as intro from '../data/intro.md';
-import { asset } from '../lib/asset';
-
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
-const friends = (await getCollection('friends')).sort((a, b) => a.data.order - b.data.order);
+import IntroPanel from '../components/panels/IntroPanel.astro';
+import WorkPanel from '../components/panels/WorkPanel.astro';
+import ContactPanel from '../components/panels/ContactPanel.astro';
+import FriendsPanel from '../components/panels/FriendsPanel.astro';
 ---
 
 <Base>
@@ -18,37 +15,9 @@ const friends = (await getCollection('friends')).sort((a, b) => a.data.order - b
 
 	<!-- Main -->
 	<div id="main">
-		<!-- Intro (bio + about me) -->
-		<article id="intro">
-			<h2 class="major">Intro</h2>
-			<span class="image main"><img src={asset(intro.frontmatter.image)} alt="" /></span>
-			<intro.Content />
-			<AboutTables
-				about={intro.frontmatter.about}
-				education={intro.frontmatter.education}
-				skills={intro.frontmatter.skills}
-			/>
-		</article>
-
-		<!-- Work (one entry per file in src/content/projects/) -->
-		<article id="work" class="work-layout">
-			<h2 class="major">Work</h2>
-			{projects.map((project) => <WorkItem project={project} />)}
-		</article>
-
-		<!-- Contact (icons from src/data/social.json) -->
-		<article id="contact">
-			<h2 class="major">Contact</h2>
-			<p>You can reach me on any of these:</p>
-			<SocialIcons />
-		</article>
-
-		<!-- Friends (one entry per file in src/content/friends/) -->
-		<article id="friends" class="work-layout">
-			<h2 class="major">Friends</h2>
-			<div class="friends-container">
-				{friends.map((friend) => <FriendCard friend={friend} />)}
-			</div>
-		</article>
+		<IntroPanel />
+		<WorkPanel />
+		<ContactPanel />
+		<FriendsPanel />
 	</div>
 </Base>

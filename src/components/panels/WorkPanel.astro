@@ -1,0 +1,13 @@
+---
+// Work panel: one entry per file in src/content/projects/.
+// Add a project by dropping a new .md file there — no change needed here.
+import { getCollection } from 'astro:content';
+import WorkItem from '../WorkItem.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<article id="work" class="work-layout">
+	<h2 class="major">Work</h2>
+	{projects.map((project) => <WorkItem project={project} />)}
+</article>
