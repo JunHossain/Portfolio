@@ -9,3 +9,5 @@ node_modules/
 .env.production
 # macOS-specific files
 .DS_Store
+# local session/handoff notes (not part of the published site)
+SESSION-NOTES.md
