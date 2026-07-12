@@ -1,0 +1,47 @@
+---
+// A project's dedicated detail panel. Rendered as a direct child of #main so the
+// template's main.js treats it as a navigable panel (same open/close animation).
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { asset } from '../lib/asset';
+
+interface Props {
+	project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, slug, summary, tags, gallery } = project.data;
+const { Content } = await render(project);
+---
+
+<article id={`project-${slug}`} class="project-detail work-layout">
+	<h2 class="major">{title}</h2>
+
+	{tags.length > 0 && (
+		<ul class="tags">
+			{tags.map((t) => <li>{t}</li>)}
+		</ul>
+	)}
+
+	{summary && <p class="summary">{summary}</p>}
+
+	<div class="writeup">
+		<Content />
+	</div>
+
+	{gallery.length > 0 && (
+		<div class="gallery">
+			{gallery.map((m) =>
+				m.type === 'video' ? (
+					<video src={asset(m.src)} controls playsinline></video>
+				) : (
+					<img src={asset(m.src)} alt={m.alt} loading="lazy" />
+				),
+			)}
+		</div>
+	)}
+
+	<ul class="actions">
+		<li><a href="#work" class="button small">&larr; Back to Work</a></li>
+	</ul>
+</article>

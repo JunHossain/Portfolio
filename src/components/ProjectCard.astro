@@ -1,0 +1,18 @@
+---
+// A single Work-grid card. Links to the project's detail panel via #project-<slug>,
+// which the template's main.js opens with the standard slide animation.
+import type { CollectionEntry } from 'astro:content';
+import { asset } from '../lib/asset';
+
+interface Props {
+	project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, slug, cardImage, alt } = project.data;
+---
+
+<a class="project-card" href={`#project-${slug}`}>
+	<img src={asset(cardImage)} alt={alt || title} />
+	<div class="card-title">{title}</div>
+</a>

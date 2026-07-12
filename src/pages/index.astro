@@ -1,13 +1,17 @@
 ---
-// Assembly only. Each panel is a self-contained file in src/components/panels/ —
-// edit those to change a section's structure. The four <article> panels compile
-// into ONE page so the Dimension show/hide animation and no-reload nav are preserved.
+// Assembly only. Each panel is a self-contained file in src/components/panels/.
+// The four panels + one detail panel per project all compile into ONE page, so the
+// Dimension show/hide animation and no-reload nav are preserved.
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import IntroPanel from '../components/panels/IntroPanel.astro';
 import WorkPanel from '../components/panels/WorkPanel.astro';
 import ContactPanel from '../components/panels/ContactPanel.astro';
 import FriendsPanel from '../components/panels/FriendsPanel.astro';
+import ProjectDetail from '../components/ProjectDetail.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Base>
@@ -19,5 +23,10 @@ import FriendsPanel from '../components/panels/FriendsPanel.astro';
 		<WorkPanel />
 		<ContactPanel />
 		<FriendsPanel />
+
+		{/* Project detail panels. These MUST be direct children of #main: main.js
+		    reads $main.children('article'), so nesting them inside WorkPanel would
+		    hide them from the navigation/animation. */}
+		{projects.map((project) => <ProjectDetail project={project} />)}
 	</div>
 </Base>

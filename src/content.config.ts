@@ -2,16 +2,26 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 // Work panel: one .md file per project in src/content/projects/.
-// The markdown body is the project description (links allowed).
+// Each project shows as a card in the Work grid and gets its own detail panel
+// (opened with the same slide animation). The markdown body is the in-depth write-up.
 const projects = defineCollection({
 	loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
 	schema: z.object({
 		title: z.string(),
-		image: z.string(), // path under public/, e.g. "images/pic02.jpg"
+		slug: z.string(), // used for the detail panel's #project-<slug> anchor
+		cardImage: z.string(), // thumbnail shown on the grid card, e.g. "images/pic02.jpg"
 		alt: z.string().default(''),
-		// image-right: text left, image right   | image-left: image left, text right
-		// center:      image centered, caption  | full: full-width image, caption below
-		layout: z.enum(['image-right', 'image-left', 'center', 'full']).default('image-right'),
+		summary: z.string().default(''), // short line shown at the top of the detail panel
+		tags: z.array(z.string()).default([]), // tech & tools, e.g. ["Java", "Design"]
+		gallery: z
+			.array(
+				z.object({
+					src: z.string(), // path under public/, e.g. "images/uno-1.png"
+					alt: z.string().default(''),
+					type: z.enum(['image', 'video']).default('image'),
+				}),
+			)
+			.default([]),
 		order: z.number().default(999),
 	}),
 });
